@@ -1,0 +1,7 @@
+pandas
+faker
+sqlalchemy
+psycopg2-binary
+clickhouse-connect
+pyspark
+python-dotenv

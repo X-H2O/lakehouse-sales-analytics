@@ -1,0 +1,91 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: bigdata-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sales_ods}
+      POSTGRES_USER: ${POSTGRES_USER:-sales_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sales_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-sales_user} -d $${POSTGRES_DB:-sales_ods}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest-alpine
+    container_name: bigdata-clickhouse
+    environment:
+      CLICKHOUSE_DB: ${CLICKHOUSE_DB:-sales_ads}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:-sales_user}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-sales_password}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - clickhouse_logs:/var/log/clickhouse-server
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user $${CLICKHOUSE_USER:-sales_user} --password $${CLICKHOUSE_PASSWORD:-sales_password} --query 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: bigdata-metabase
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase-data
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+
+  minio:
+    image: minio/minio:latest
+    container_name: bigdata-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
+    ports:
+      - "9002:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: bigdata-minio-init
+    depends_on:
+      - minio
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin123}
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set local http://minio:9000 $${MINIO_ROOT_USER:-minioadmin} $${MINIO_ROOT_PASSWORD:-minioadmin123}; do sleep 2; done;
+      mc mb -p local/warehouse || true;
+      mc anonymous set none local/warehouse || true;
+      "
+
+  kafka:
+    image: apache/kafka:4.0.2
+    container_name: bigdata-kafka
+    ports:
+      - "9092:9092"
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  clickhouse_logs:
+  metabase_data:
+  minio_data:
