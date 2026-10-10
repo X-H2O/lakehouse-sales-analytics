@@ -1,0 +1,26 @@
+{
+  "injected_faults": [
+    {
+      "id": "negative_order_total",
+      "injected": 1
+    },
+    {
+      "id": "negative_item_amount",
+      "injected": 1
+    },
+    {
+      "id": "negative_unit_price",
+      "injected": 1
+    },
+    {
+      "id": "negative_refund_amount",
+      "injected": 1
+    }
+  ],
+  "quality_summary": "Summary: passed=48, failed=2, total=50",
+  "failed_checks": [
+    "[FAIL] DWD dwd_order_detail has no negative sales amounts (bad_rows=2)",
+    "[FAIL] DWD dwd_refund_detail has no negative refund amounts (bad_rows=1)"
+  ],
+  "failed_check_count": 2
+}
