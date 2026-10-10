@@ -1,0 +1,36 @@
+{
+  "table": "lake.demo.products_demo",
+  "snapshot_count": 3,
+  "snapshots": [
+    {
+      "snapshot_id": 3152174454460574412,
+      "committed_at": "2026-10-10 22:21:29.859000"
+    },
+    {
+      "snapshot_id": 8383166616217602622,
+      "committed_at": "2026-10-10 22:21:31.194000"
+    },
+    {
+      "snapshot_id": 8829097722752030930,
+      "committed_at": "2026-10-10 22:21:32.337000"
+    }
+  ],
+  "snapshot_1_id": 3152174454460574412,
+  "snapshot_2_id": 8383166616217602622,
+  "rows_after_v1": 2,
+  "rows_after_v2": 3,
+  "time_travel_rows_at_snapshot_1": 2,
+  "time_travel_names_at_snapshot_1": [
+    "P1",
+    "P2"
+  ],
+  "time_travel_works": true,
+  "schema_evolution_added_column": "category",
+  "columns_after_evolution": [
+    "id",
+    "name",
+    "price",
+    "category"
+  ],
+  "schema_evolution_works": true
+}
