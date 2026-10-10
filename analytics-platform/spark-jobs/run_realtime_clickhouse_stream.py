@@ -31,7 +31,7 @@ KAFKA_CONTAINER = "bigdata-kafka"
 KAFKA_BIN = "/opt/kafka/bin"
 BOOTSTRAP_SERVER = "localhost:9092"
 TOPIC = "sales.order_events"
-KAFKA_PACKAGE = "org.apache.spark:spark-sql-kafka-0-10_2.13:4.1.2"
+KAFKA_PACKAGE = "org.apache.spark:spark-sql-kafka-0-10_2.13:4.0.0"
 HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.1"
 
 MINIO_ENDPOINT = "http://localhost:9002"
@@ -168,7 +168,7 @@ def create_spark(checkpoint: str, master: str) -> SparkSession:
         SparkSession.builder.appName("run-realtime-clickhouse-stream")
         .master(master)
         .config("spark.jars.packages", ",".join(packages))
-        .config("spark.driver.host", "127.0.0.1")
+        .config("spark.driver.host", "localhost")
         .config("spark.driver.bindAddress", "127.0.0.1")
         .config("spark.sql.session.timeZone", "Asia/Shanghai")
     )

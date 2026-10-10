@@ -1,0 +1,12 @@
+{
+  "events_produced": 200,
+  "events_ingested": 200,
+  "end_to_end_wall_seconds": 4.11,
+  "latency_ms": {
+    "count": 200,
+    "median": 3000.0,
+    "min": 3000.0,
+    "max": 3000.0
+  },
+  "throughput_events_per_second": 48.67
+}
