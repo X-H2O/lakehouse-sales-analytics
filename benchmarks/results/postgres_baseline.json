@@ -1,0 +1,76 @@
+{
+  "scale": "small",
+  "note": "PostgreSQL runs aggregation on raw ODS tables on-the-fly; ClickHouse serves precomputed DWS tables.",
+  "queries": {
+    "daily_sales": {
+      "pg": {
+        "median_ms": 0.82,
+        "min_ms": 0.75,
+        "max_ms": 0.83
+      },
+      "pg_rows": 178,
+      "ch": {
+        "median_ms": 44.02,
+        "min_ms": 43.4,
+        "max_ms": 44.06
+      },
+      "ch_rows": 178
+    },
+    "channel_summary": {
+      "pg": {
+        "median_ms": 0.89,
+        "min_ms": 0.85,
+        "max_ms": 0.92
+      },
+      "pg_rows": 8,
+      "ch": {
+        "median_ms": 43.99,
+        "min_ms": 43.81,
+        "max_ms": 44.0
+      },
+      "ch_rows": 8
+    },
+    "user_value": {
+      "pg": {
+        "median_ms": 0.76,
+        "min_ms": 0.74,
+        "max_ms": 0.76
+      },
+      "pg_rows": 20,
+      "ch": {
+        "median_ms": 44.04,
+        "min_ms": 43.99,
+        "max_ms": 44.18
+      },
+      "ch_rows": 20
+    },
+    "product_sales": {
+      "pg": {
+        "median_ms": 0.72,
+        "min_ms": 0.67,
+        "max_ms": 0.73
+      },
+      "pg_rows": 20,
+      "ch": {
+        "median_ms": 43.98,
+        "min_ms": 43.85,
+        "max_ms": 44.15
+      },
+      "ch_rows": 20
+    },
+    "category_refund": {
+      "pg": {
+        "median_ms": 0.44,
+        "min_ms": 0.43,
+        "max_ms": 0.47
+      },
+      "pg_rows": 8,
+      "ch": {
+        "median_ms": 43.95,
+        "min_ms": 43.81,
+        "max_ms": 44.11
+      },
+      "ch_rows": 8
+    }
+  }
+}
