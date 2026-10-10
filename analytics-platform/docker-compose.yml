@@ -50,7 +50,7 @@ services:
       MB_DB_FILE: /metabase-data/metabase.db
 
   minio:
-    image: minio/minio:latest
+    image: netvark/minio:latest
     container_name: bigdata-minio
     command: server /data --console-address ":9001"
     environment:
@@ -63,7 +63,7 @@ services:
       - minio_data:/data
 
   minio-init:
-    image: minio/mc:latest
+    image: netvark/mc:latest
     container_name: bigdata-minio-init
     depends_on:
       - minio

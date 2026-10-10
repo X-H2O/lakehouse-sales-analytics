@@ -17,7 +17,7 @@ from pyspark.sql import DataFrame, SparkSession
 
 
 ICEBERG_PACKAGE = "org.apache.iceberg:iceberg-spark-runtime-4.0_2.13:1.10.0"
-HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.2"
+HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.1"
 POSTGRES_PACKAGE = "org.postgresql:postgresql:42.7.8"
 
 POSTGRES_URL = "jdbc:postgresql://localhost:5432/sales_ods"

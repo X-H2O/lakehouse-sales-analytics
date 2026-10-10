@@ -1,0 +1,6 @@
+<ivysettings>
+  <settings defaultResolver="aliyun"/>
+  <resolvers>
+    <ibiblio name="aliyun" m2compatible="true" root="https://maven.aliyun.com/repository/public"/>
+  </resolvers>
+</ivysettings>

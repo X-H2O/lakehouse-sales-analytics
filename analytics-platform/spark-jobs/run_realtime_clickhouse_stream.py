@@ -32,7 +32,7 @@ KAFKA_BIN = "/opt/kafka/bin"
 BOOTSTRAP_SERVER = "localhost:9092"
 TOPIC = "sales.order_events"
 KAFKA_PACKAGE = "org.apache.spark:spark-sql-kafka-0-10_2.13:4.1.2"
-HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.2"
+HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.1"
 
 MINIO_ENDPOINT = "http://localhost:9002"
 MINIO_ACCESS_KEY = "minioadmin"

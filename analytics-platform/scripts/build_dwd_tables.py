@@ -18,7 +18,7 @@ from pyspark.sql import functions as F
 
 
 ICEBERG_PACKAGE = "org.apache.iceberg:iceberg-spark-runtime-4.0_2.13:1.10.0"
-HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.2"
+HADOOP_AWS_PACKAGE = "org.apache.hadoop:hadoop-aws:3.4.1"
 
 MINIO_ENDPOINT = "http://localhost:9002"
 MINIO_ACCESS_KEY = "minioadmin"
